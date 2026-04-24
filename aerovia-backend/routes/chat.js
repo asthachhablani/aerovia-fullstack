@@ -85,10 +85,18 @@ router.post('/', async (req, res) => {
     const { GoogleGenerativeAI } = await import('@google/generative-ai');
     const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 
-    const candidateModels = (process.env.GEMINI_MODEL
+    // "Lite" models first — they have the highest free-tier quotas and are
+    // more than enough for a concierge chat. Fall through to bigger models
+    // only if every lite tier is busy.
+    const candidateModels = process.env.GEMINI_MODEL
       ? [process.env.GEMINI_MODEL]
-      : ['gemini-2.5-flash', 'gemini-2.0-flash', 'gemini-flash-latest']
-    );
+      : [
+          'gemini-2.5-flash-lite',
+          'gemini-2.0-flash-lite',
+          'gemini-flash-latest',
+          'gemini-2.5-flash',
+          'gemini-2.0-flash',
+        ];
 
     const allMessages = [...messages];
     const lastUserMessage = allMessages.pop();
@@ -98,27 +106,45 @@ router.post('/', async (req, res) => {
       parts: [{ text: msg.content }],
     }));
 
+    const sleep = (ms) => new Promise(r => setTimeout(r, ms));
+    const isOverloaded = (msg = '') => /\b503\b|overload|high demand|unavailable/i.test(msg);
+    const isQuota = (msg = '') => /\b429\b|quota|rate.?limit|exceeded/i.test(msg);
+
     let lastError;
     for (const modelName of candidateModels) {
-      try {
-        const model = genAI.getGenerativeModel({ model: modelName });
-        const chat = model.startChat({
-          history: [
-            { role: 'user', parts: [{ text: 'Who are you?' }] },
-            { role: 'model', parts: [{ text: SYSTEM_PROMPT }] },
-            ...history,
-          ],
-        });
-        const result = await chat.sendMessage(lastUserMessage.content);
-        return res.json({
-          success: true,
-          reply: result.response.text(),
-          mode: 'live',
-          model: modelName,
-        });
-      } catch (err) {
-        lastError = err;
-        console.warn(`[chat] model ${modelName} failed: ${err.message?.slice(0, 200)}`);
+      // Up to 2 attempts per model: if first try is a transient 503, retry once.
+      for (let attempt = 0; attempt < 2; attempt++) {
+        try {
+          const model = genAI.getGenerativeModel({ model: modelName });
+          const chat = model.startChat({
+            history: [
+              { role: 'user', parts: [{ text: 'Who are you?' }] },
+              { role: 'model', parts: [{ text: SYSTEM_PROMPT }] },
+              ...history,
+            ],
+          });
+          const result = await chat.sendMessage(lastUserMessage.content);
+          return res.json({
+            success: true,
+            reply: result.response.text(),
+            mode: 'live',
+            model: modelName,
+          });
+        } catch (err) {
+          lastError = err;
+          const short = (err.message || '').slice(0, 200);
+          console.warn(`[chat] ${modelName} attempt ${attempt + 1} failed: ${short}`);
+
+          // Quota exhaustion — no point retrying this model, jump to next.
+          if (isQuota(err.message)) break;
+
+          // Transient overload — short backoff and retry once.
+          if (isOverloaded(err.message) && attempt === 0) {
+            await sleep(600);
+            continue;
+          }
+          break;
+        }
       }
     }
     throw lastError || new Error('All Gemini models failed');
