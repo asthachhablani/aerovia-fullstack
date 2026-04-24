@@ -61,10 +61,23 @@ also degrade gracefully to a demo reply rather than failing.
 
 ## Demo data
 
-`aerovia-backend/data/demoData.js` contains 20 destinations, 30 flights,
-20 hotels, 15 bus routes, 18 packages, deals, and airports — all served
-through `/api/data/*`. Filtering, sorting, and a smart `/api/data/search`
-endpoint are implemented.
+Two-layer catalogue served from `/api/data/*`:
+
+- `aerovia-backend/data/demoData.js` holds the hand-crafted "featured"
+  records (20 destinations, 30 flights, 20 hotels, 15 buses, 18 packages,
+  12 deals, 20 airports) shown at the top of every list.
+- `aerovia-backend/data/generate.js` procedurally builds large catalogues
+  on boot from real-world city/airline/hotel-brand pools using a seeded
+  PRNG (mulberry32), so IDs and prices are stable across restarts.
+
+Combined totals on boot: ~200 destinations, 10 030 flights, 10 020 hotels,
+10 015 buses, 10 018 packages, ~110 deals, ~145 airports. Generation runs
+in ~130 ms.
+
+All list endpoints accept `page` (default 1) and `limit` (default 50, max
+100) and return `{ data, total, page, limit, pageCount }`. Pass `all=1`
+to opt out of pagination (capped at 1 000 items for safety). Sorting via
+`sortBy=price | -price | rating | duration` where applicable.
 
 ## API surface
 

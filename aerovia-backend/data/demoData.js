@@ -1,9 +1,20 @@
 // ═══════════════════════════════════════════════════════════════
 //  AEROVIA  ·  COMPREHENSIVE DEMO DATA
-//  All data is fictional / demo. Replace API keys for live data.
+//  Hand-crafted "featured" items appear first; thousands of
+//  realistic procedural items are appended from generate.js.
 // ═══════════════════════════════════════════════════════════════
 
-export const destinations = [
+import {
+  generateDestinations,
+  generateFlights,
+  generateHotels,
+  generateBuses,
+  generatePackages,
+  generateDeals,
+  generateAirports,
+} from './generate.js';
+
+const featuredDestinations = [
   {
     id: 'tokyo', name: 'Tokyo', country: 'Japan', region: 'East Asia',
     image: 'https://images.unsplash.com/photo-1665712638676-ff7045551805?w=1080&q=80',
@@ -216,7 +227,7 @@ export const destinations = [
 ];
 
 // ─── FLIGHTS ─────────────────────────────────────────────────────
-export const flights = [
+const featuredFlights = [
   { id: 'F001', airline: 'Air India', code: 'AI-101', from: 'DEL', fromCity: 'New Delhi', to: 'NRT', toCity: 'Tokyo', dep: '23:15', arr: '10:30+1', duration: '7h 45m', stops: 'Direct', price: 42800, seatsLeft: 12, class: 'Economy', tag: 'BEST VALUE' },
   { id: 'F002', airline: 'Emirates', code: 'EK-512', from: 'DEL', fromCity: 'New Delhi', to: 'NRT', toCity: 'Tokyo', dep: '02:30', arr: '14:55+1', duration: '8h 25m', stops: '1 stop · DXB', price: 38500, seatsLeft: 5, class: 'Economy', tag: 'LOWEST PRICE' },
   { id: 'F003', airline: 'JAL', code: 'JL-095', from: 'BOM', fromCity: 'Mumbai', to: 'NRT', toCity: 'Tokyo', dep: '14:00', arr: '04:15+2', duration: '9h 15m', stops: '1 stop · BKK', price: 45200, seatsLeft: 18, class: 'Economy', tag: 'FULL SERVICE' },
@@ -250,7 +261,7 @@ export const flights = [
 ];
 
 // ─── HOTELS ──────────────────────────────────────────────────────
-export const hotels = [
+const featuredHotels = [
   { id: 'H001', name: 'The Peninsular Tokyo', city: 'Tokyo', country: 'Japan', stars: 5, rating: 4.9, reviews: 2840, pricePerNight: 18500, image: 'https://images.unsplash.com/photo-1615460549969-36fa19521a4f?w=800&q=80', amenities: ['Spa', 'Pool', 'Gym', 'Fine Dining', 'Concierge', 'Butler Service'], tag: 'ULTRA LUXURY', checkIn: '15:00', checkOut: '12:00', desc: 'Timeless elegance above Hibiya Park. Tokyo unfolds below in every direction.' },
   { id: 'H002', name: 'Shinjuku Granbell Hotel', city: 'Tokyo', country: 'Japan', stars: 4, rating: 4.5, reviews: 1240, pricePerNight: 8200, image: 'https://images.unsplash.com/photo-1598928636135-d146006ff4be?w=800&q=80', amenities: ['Bar', 'Gym', 'City Views', 'Concierge'], tag: 'BOUTIQUE', checkIn: '15:00', checkOut: '11:00', desc: 'Design-forward boutique hotel in the heart of Shinjuku nightlife.' },
   { id: 'H003', name: 'Hoshinoya Tokyo', city: 'Tokyo', country: 'Japan', stars: 5, rating: 4.8, reviews: 890, pricePerNight: 22000, image: 'https://images.unsplash.com/photo-1618773928121-c32242e63f39?w=800&q=80', amenities: ['Onsen', 'Spa', 'Japanese Breakfast', 'Concierge', 'Roof Garden'], tag: 'RYOKAN LUXURY', checkIn: '15:00', checkOut: '12:00', desc: 'A vertical ryokan experience with private onsen floors in central Tokyo.' },
@@ -274,7 +285,7 @@ export const hotels = [
 ];
 
 // ─── BUS ROUTES ──────────────────────────────────────────────────
-export const buses = [
+const featuredBuses = [
   { id: 'B001', operator: 'RedBus Premium', from: 'Mumbai', to: 'Goa', dep: '20:00', arr: '07:30+1', duration: '11h 30m', price: 850, type: 'Sleeper AC', seatsLeft: 8, rating: 4.4, amenities: ['AC', 'Blanket', 'Charger', 'Water Bottle'] },
   { id: 'B002', operator: 'VRL Travels', from: 'Mumbai', to: 'Goa', dep: '22:00', arr: '09:00+1', duration: '11h 00m', price: 650, type: 'Semi Sleeper AC', seatsLeft: 14, rating: 4.1, amenities: ['AC', 'Charger'] },
   { id: 'B003', operator: 'Sharma Travels', from: 'Delhi', to: 'Jaipur', dep: '06:00', arr: '11:30', duration: '5h 30m', price: 480, type: 'AC Seater', seatsLeft: 22, rating: 4.3, amenities: ['AC', 'Snacks', 'Charger'] },
@@ -293,7 +304,7 @@ export const buses = [
 ];
 
 // ─── PACKAGES ─────────────────────────────────────────────────────
-export const packages = [
+const featuredPackages = [
   { id: 'PKG001', title: 'Japan Cherry Blossom Circuit', destination: 'Japan', image: 'https://images.unsplash.com/photo-1768947814430-ec307db34952?w=800&q=80', duration: '10 days', price: 128000, tag: 'BESTSELLER', rating: 4.9, reviews: 342, inclusions: ['Return Flights', '5-Star Hotels', 'Shinkansen Pass', 'Guide', 'Breakfast Daily', 'Airport Transfers'], desc: 'Tokyo to Kyoto via the bullet train. Cherry blossom season, ryokan nights, kaiseki dinners.' },
   { id: 'PKG002', title: 'Maldives Overwater Escape', destination: 'Maldives', image: 'https://images.unsplash.com/photo-1575231902188-93d58962d791?w=800&q=80', duration: '6 days', price: 142000, tag: 'LUXURY', rating: 4.9, reviews: 218, inclusions: ['Return Flights', 'Overwater Villa', 'All Meals', 'Seaplane Transfer', 'Snorkelling Gear', 'Sunset Cruise'], desc: 'A private overwater villa above the UNESCO-listed Baa Atoll. House reef, crystal water, absolute silence.' },
   { id: 'PKG003', title: 'Morocco Sahara Adventure', destination: 'Morocco', image: 'https://images.unsplash.com/photo-1548364504-57247d6f96bb?w=800&q=80', duration: '8 days', price: 52000, tag: 'ADVENTURE', rating: 4.7, reviews: 189, inclusions: ['Return Flights', 'Riads & Desert Camp', 'All Transport', 'Guide', 'Camel Trek', 'Breakfast Daily'], desc: 'Marrakech medina to Saharan dunes. Imperial cities, Atlas Mountains, desert nights under stars.' },
@@ -315,7 +326,7 @@ export const packages = [
 ];
 
 // ─── FLASH DEALS ─────────────────────────────────────────────────
-export const deals = [
+const featuredDeals = [
   { id: 'D001', destId: 'morocco', destName: 'Morocco', image: 'https://images.unsplash.com/photo-1548364504-57247d6f96bb?w=800&q=80', originalPrice: 42000, discountedPrice: 27720, discount: 34, tag: 'FLASH', seatsLeft: 3, expiresIn: 23 * 3600 + 14 * 60, desc: 'Marrakech 7-night package including desert camp' },
   { id: 'D002', destId: 'tokyo', destName: 'Tokyo', image: 'https://images.unsplash.com/photo-1665712638676-ff7045551805?w=800&q=80', originalPrice: 74000, discountedPrice: 57720, discount: 22, tag: 'LIMITED', seatsLeft: 7, expiresIn: 11 * 3600 + 42 * 60, desc: 'Tokyo 8-day package with bullet train pass' },
   { id: 'D003', destId: 'lisbon', destName: 'Lisbon', image: 'https://images.unsplash.com/photo-1681995585128-9c9bc14c2dd0?w=800&q=80', originalPrice: 56000, discountedPrice: 45920, discount: 18, tag: 'WEEKEND', seatsLeft: 12, expiresIn: 47 * 3600 + 8 * 60, desc: 'Lisbon & Sintra 5-night boutique hotel package' },
@@ -331,7 +342,7 @@ export const deals = [
 ];
 
 // ─── AIRPORT CODES ────────────────────────────────────────────────
-export const airports = [
+const featuredAirports = [
   { code: 'DEL', city: 'New Delhi', country: 'India', name: 'Indira Gandhi International' },
   { code: 'BOM', city: 'Mumbai', country: 'India', name: 'Chhatrapati Shivaji Maharaj International' },
   { code: 'BLR', city: 'Bengaluru', country: 'India', name: 'Kempegowda International' },
@@ -353,3 +364,21 @@ export const airports = [
   { code: 'SYD', city: 'Sydney', country: 'Australia', name: 'Sydney Airport' },
   { code: 'ZRH', city: 'Zurich', country: 'Switzerland', name: 'Zurich Airport' },
 ];
+
+// ═══════════════════════════════════════════════════════════════
+//  COMBINED EXPORTS  ·  Featured items first, generated after.
+//  Generation is deterministic (seeded) so IDs/prices are stable.
+// ═══════════════════════════════════════════════════════════════
+const t0 = Date.now();
+
+export const destinations = [...featuredDestinations, ...generateDestinations(1, 180)];
+export const flights      = [...featuredFlights,      ...generateFlights(2, 10000)];
+export const hotels       = [...featuredHotels,       ...generateHotels(3, 10000)];
+export const buses        = [...featuredBuses,        ...generateBuses(4, 10000)];
+export const packages     = [...featuredPackages,     ...generatePackages(5, 10000)];
+export const deals        = [...featuredDeals,        ...generateDeals(6, 100, packages)];
+export const airports     = [...featuredAirports,     ...generateAirports().filter(a => !featuredAirports.find(f => f.code === a.code))];
+
+console.log(`[demoData] catalogues built in ${Date.now() - t0}ms · ` +
+  `dest=${destinations.length} flights=${flights.length} hotels=${hotels.length} ` +
+  `buses=${buses.length} pkgs=${packages.length} deals=${deals.length} airports=${airports.length}`);
