@@ -1,0 +1,113 @@
+@import './fonts.css';
+@import './tailwind.css';
+@import './theme.css';
+
+/* ═══════════════════════════════════════
+   AEROVIA — MIDNIGHT ATLAS DESIGN SYSTEM
+═══════════════════════════════════════ */
+:root {
+  --av-bg: #06060A;
+  --av-surface: #0E0E16;
+  --av-border: rgba(255,255,255,0.063);
+  --av-accent: #5C6FFF;
+  --av-orange: #FF6B35;
+  --av-lime: #C8F135;
+  --av-text: #F0EEE9;
+  --av-muted: rgba(240,238,233,0.45);
+}
+
+.font-display { font-family: 'Clash Display', 'Inter', sans-serif; }
+.font-body    { font-family: 'Satoshi', 'Inter', sans-serif; }
+.font-data    { font-family: 'DM Mono', 'Courier New', monospace; }
+
+/* Global cursor override */
+*, *::before, *::after { cursor: none !important; }
+
+/* Scrollbar hidden everywhere */
+* { scrollbar-width: none; -ms-overflow-style: none; }
+*::-webkit-scrollbar { display: none; }
+
+/* Grain texture */
+.grain-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 4;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+}
+
+/* Ticker tape */
+@keyframes ticker {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.ticker-track { animation: ticker 35s linear infinite; }
+
+/* Skeleton shimmer */
+@keyframes shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position:  200% 0; }
+}
+.skeleton {
+  background: linear-gradient(90deg, #0E0E16 25%, #16162A 50%, #0E0E16 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.6s infinite;
+}
+
+/* Typing indicator wave */
+@keyframes wave {
+  0%, 60%, 100% { transform: translateY(0); }
+  30%           { transform: translateY(-5px); }
+}
+.typing-dot:nth-child(1) { animation: wave 1.2s ease-in-out infinite 0.0s; }
+.typing-dot:nth-child(2) { animation: wave 1.2s ease-in-out infinite 0.2s; }
+.typing-dot:nth-child(3) { animation: wave 1.2s ease-in-out infinite 0.4s; }
+
+/* Count-up number */
+@keyframes countup-reveal {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Deal stamp diagonal */
+.deal-stamp {
+  position: absolute;
+  top: 20px;
+  right: -28px;
+  background: #C8F135;
+  color: #06060A;
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  padding: 4px 36px;
+  transform: rotate(45deg);
+  z-index: 10;
+}
+
+/* AI chat glow */
+.ai-message-glow {
+  box-shadow: -3px 0 24px rgba(92,111,255,0.15);
+}
+
+/* Horizontal scroll container */
+.h-scroll-container {
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+/* 3D perspective for tilt cards */
+.tilt-container {
+  perspective: 1000px;
+}
+
+/* Selection style */
+::selection {
+  background: rgba(92,111,255,0.35);
+  color: #F0EEE9;
+}
+
+/* Smooth scroll */
+html { scroll-behavior: smooth; }
