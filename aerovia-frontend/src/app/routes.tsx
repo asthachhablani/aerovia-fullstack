@@ -6,6 +6,8 @@ import { Destination } from './pages/Destination';
 import { Booking } from './pages/Booking';
 import { Dashboard } from './pages/Dashboard';
 import { Deals } from './pages/Deals';
+import { Flights } from './pages/Flights';
+import { Hotels } from './pages/Hotels';
 import { Login } from './pages/Login';
 import { Register } from './pages/Register';
 import { Profile } from './pages/Profile';
@@ -21,6 +23,8 @@ export const router = createBrowserRouter([
       { path: 'book', Component: Booking },
       { path: 'dashboard', Component: Dashboard },
       { path: 'deals', Component: Deals },
+      { path: 'flights', Component: Flights },
+      { path: 'hotels', Component: Hotels },
       { path: 'login', Component: Login },
       { path: 'register', Component: Register },
       { path: 'profile', Component: Profile },

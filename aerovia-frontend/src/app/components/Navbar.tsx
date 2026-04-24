@@ -10,8 +10,10 @@ interface NavbarProps {
 }
 
 const navLinks = [
-  { label: 'EXPLORE', path: '/search' },
-  { label: 'DEALS', path: '/deals' },
+  { label: 'EXPLORE',   path: '/search' },
+  { label: 'FLIGHTS',   path: '/flights' },
+  { label: 'HOTELS',    path: '/hotels' },
+  { label: 'DEALS',     path: '/deals' },
   { label: 'DASHBOARD', path: '/dashboard' },
 ];
 
