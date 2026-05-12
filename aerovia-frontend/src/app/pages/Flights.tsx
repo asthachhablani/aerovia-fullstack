@@ -1,8 +1,9 @@
 import { useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router';
-import { motion } from 'motion/react';
+import { motion, AnimatePresence } from 'motion/react';
 import { Plane, ArrowRight, Filter, X, Loader2 } from 'lucide-react';
 import { dataApi } from '../services/api';
+import { PriceSparkline, RoutePricePanel } from '../components/PriceTracker';
 
 interface Flight {
   id: string;
@@ -152,6 +153,31 @@ export function Flights() {
 
       {/* ── Results ──────────────────────────────────────── */}
       <div className="px-4 sm:px-8 lg:px-16 py-10 md:py-14">
+        {/* Route price trend panel — shown when a specific route is searched */}
+        <AnimatePresence>
+          {!loading && from && to && flights.length > 0 && (() => {
+            const avg = Math.round(flights.slice(0, 10).reduce((s, f) => s + f.price, 0) / Math.min(flights.length, 10));
+            const firstFlight = flights[0];
+            return (
+              <motion.div
+                key={`${from}-${to}`}
+                initial={{ opacity: 0, y: -12 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -8 }}
+                transition={{ duration: 0.4 }}
+              >
+                <RoutePricePanel
+                  from={from}
+                  to={to}
+                  fromCity={firstFlight?.fromCity}
+                  toCity={firstFlight?.toCity}
+                  currentAvgPrice={avg}
+                />
+              </motion.div>
+            );
+          })()}
+        </AnimatePresence>
+
         {loading ? (
           <SkeletonGrid />
         ) : flights.length === 0 ? (
@@ -236,9 +262,12 @@ function FlightCard({ flight, index }: { flight: Flight; index: number }) {
       </div>
 
       <div className="flex items-end justify-between pt-4" style={{ borderTop: '1px solid rgba(255,255,255,0.06)' }}>
-        <div>
-          <p className="font-data text-[9px] tracking-[0.2em] mb-0.5" style={{ color: 'rgba(240,238,233,0.4)' }}>FROM</p>
-          <p className="font-data text-2xl" style={{ color: 'var(--av-text)', letterSpacing: '-0.02em' }}>₹{flight.price.toLocaleString('en-IN')}</p>
+        <div className="flex items-end gap-4">
+          <div>
+            <p className="font-data text-[9px] tracking-[0.2em] mb-0.5" style={{ color: 'rgba(240,238,233,0.4)' }}>FROM</p>
+            <p className="font-data text-2xl" style={{ color: 'var(--av-text)', letterSpacing: '-0.02em' }}>₹{flight.price.toLocaleString('en-IN')}</p>
+          </div>
+          <PriceSparkline flightId={flight.id} basePrice={flight.price} width={72} height={26} />
         </div>
         <div className="flex items-center gap-3">
           {flight.seatsLeft <= 8 && (
