@@ -93,9 +93,15 @@ export function Search() {
 
       {/* Search header */}
       <div className="px-4 sm:px-8 lg:px-16 pt-10 md:pt-16 pb-10 md:pb-14">
-        <motion.p initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} className="font-data text-[10px] tracking-[0.3em] mb-5" style={{ color: 'var(--av-accent)' }}>
-          AEROVIA INTELLIGENCE ◆ AI SEARCH
-        </motion.p>
+        <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} className="flex items-center gap-3 mb-5">
+          <p className="font-data text-[10px] tracking-[0.3em]" style={{ color: 'var(--av-accent)' }}>
+            AEROVIA INTELLIGENCE ◆ AI SEARCH
+          </p>
+          <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-[3px]" style={{ background: 'rgba(200,241,53,0.08)', border: '1px solid rgba(200,241,53,0.2)' }}>
+            <span className="w-1 h-1 rounded-full animate-pulse" style={{ background: 'var(--av-lime)' }} />
+            <span className="font-data text-[8px] tracking-[0.2em]" style={{ color: 'var(--av-lime)' }}>GEMINI LIVE</span>
+          </div>
+        </motion.div>
         <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }} className="font-display mb-8 md:mb-10" style={{ fontSize: 'clamp(32px, 5vw, 64px)', color: 'var(--av-text)', letterSpacing: '-0.02em', lineHeight: 1, maxWidth: 700 }}>
           Tell us where<br /><span style={{ color: 'rgba(240,238,233,0.35)' }}>you want to go.</span>
         </motion.h1>

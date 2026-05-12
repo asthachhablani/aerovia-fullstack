@@ -71,9 +71,13 @@ export function Packages() {
 
       {/* Header */}
       <div className="px-4 sm:px-8 lg:px-16 pt-10 md:pt-16 pb-8">
-        <motion.p initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} className="font-data text-[10px] tracking-[0.3em] mb-4" style={{ color: 'var(--av-accent)' }}>
-          AEROVIA / HOLIDAY PACKAGES
-        </motion.p>
+        <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} className="flex items-center gap-3 mb-4">
+          <p className="font-data text-[10px] tracking-[0.3em]" style={{ color: 'var(--av-accent)' }}>AEROVIA / HOLIDAY PACKAGES</p>
+          <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-[3px]" style={{ background: 'rgba(255,107,53,0.08)', border: '1px solid rgba(255,107,53,0.2)' }}>
+            <span className="w-1 h-1 rounded-full" style={{ background: 'var(--av-orange)' }} />
+            <span className="font-data text-[8px] tracking-[0.18em]" style={{ color: 'rgba(240,238,233,0.4)' }}>ALL INCLUSIVE</span>
+          </div>
+        </motion.div>
         <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6">
           <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }} className="font-display" style={{ fontSize: 'clamp(32px, 5vw, 72px)', color: 'var(--av-text)', letterSpacing: '-0.025em', lineHeight: 0.9 }}>
             Curated packages.<br /><span style={{ color: 'rgba(240,238,233,0.35)' }}>Everything included.</span>

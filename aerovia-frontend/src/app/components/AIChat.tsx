@@ -121,16 +121,20 @@ export function AIChat({ isOpen, onClose }: AIChatProps) {
             {/* Header */}
             <div className="flex items-center justify-between px-6 py-5" style={{ borderBottom: '1px solid rgba(255,255,255,0.06)' }}>
               <div className="flex items-center gap-3">
-                <div className="w-7 h-7 rounded-[6px] flex items-center justify-center" style={{ background: 'rgba(92,111,255,0.15)', border: '1px solid rgba(92,111,255,0.25)' }}>
-                  <Sparkles size={13} strokeWidth={1.5} style={{ color: 'var(--av-accent)' }} />
+                <div className="w-8 h-8 rounded-[6px] flex items-center justify-center relative" style={{ background: 'linear-gradient(135deg, rgba(92,111,255,0.25), rgba(92,111,255,0.08))', border: '1px solid rgba(92,111,255,0.3)' }}>
+                  <Sparkles size={14} strokeWidth={1.5} style={{ color: 'var(--av-accent)' }} />
+                  <span className="absolute -top-1 -right-1 w-2.5 h-2.5 rounded-full border-2 animate-pulse" style={{ background: 'var(--av-lime)', borderColor: '#09090F' }} />
                 </div>
                 <div>
                   <p className="font-data text-[11px] tracking-[0.2em]" style={{ color: 'var(--av-text)' }}>AI CONCIERGE</p>
-                  <p className="font-body text-[10px]" style={{ color: 'rgba(240,238,233,0.35)' }}>Powered by Gemini AI</p>
+                  <div className="flex items-center gap-1.5 mt-0.5">
+                    <span className="w-1 h-1 rounded-full" style={{ background: 'var(--av-lime)' }} />
+                    <p className="font-body text-[10px]" style={{ color: 'rgba(240,238,233,0.4)' }}>Live · Gemini AI</p>
+                  </div>
                 </div>
               </div>
-              <button onClick={onClose} style={{ color: 'rgba(240,238,233,0.35)' }} className="hover:text-white transition-colors">
-                <X size={16} strokeWidth={1.5} />
+              <button onClick={onClose} style={{ color: 'rgba(240,238,233,0.35)' }} className="hover:text-white transition-colors p-1 rounded-[4px] hover:bg-[rgba(255,255,255,0.05)]">
+                <X size={15} strokeWidth={1.5} />
               </button>
             </div>
 
@@ -215,9 +219,12 @@ export function AIChat({ isOpen, onClose }: AIChatProps) {
                   <Send size={12} strokeWidth={2} color="#fff" />
                 </button>
               </div>
-              <p className="font-data text-[9px] text-center mt-3 tracking-wider" style={{ color: 'rgba(240,238,233,0.2)' }}>
-                AEROVIA INTELLIGENCE · GEMINI AI
-              </p>
+              <div className="flex items-center justify-center gap-2 mt-3">
+                <span className="w-1 h-1 rounded-full animate-pulse" style={{ background: 'var(--av-lime)' }} />
+                <p className="font-data text-[9px] tracking-wider" style={{ color: 'rgba(240,238,233,0.2)' }}>
+                  AEROVIA INTELLIGENCE · GOOGLE GEMINI
+                </p>
+              </div>
             </div>
           </motion.div>
         </>

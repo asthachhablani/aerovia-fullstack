@@ -8,7 +8,7 @@ import { CountUp } from '../components/CountUp';
 import { destinations } from '../data/destinations';
 
 const HERO_IMG =
-  'https://images.unsplash.com/photo-1769670172608-f741dd969509?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxJY2VsYW5kJTIwdm9sY2FuaWMlMjBkYXJrJTIwbW9vZHklMjBkcmFtYXRpYyUyMGxhbmRzY2FwZXxlbnwxfHx8fDE3NzY5NTA2MDR8MA&ixlib=rb-4.1.0&q=80&w=1920';
+  'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1920';
 
 const STATS = [
   { value: 127, suffix: '+', label: 'Destinations' },
@@ -97,13 +97,13 @@ export function Home() {
         {/* ── DESKTOP right image area ── */}
         <div className="hidden md:block relative flex-1 overflow-hidden">
           <div className="absolute inset-y-0 left-0 z-10" style={{ width: '35%', background: 'linear-gradient(to right, var(--av-bg), rgba(6,6,10,0))' }} />
-          <div className="absolute inset-0" style={{ background: 'rgba(6,6,10,0.28)' }} />
+          <div className="absolute inset-0" style={{ background: 'rgba(6,6,10,0.15)' }} />
           <div className="grain-overlay" />
           <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.0 }} className="absolute bottom-10 right-10 z-20">
-            <Link to="/destination/iceland" className="block text-right group">
+            <Link to="/destination/switzerland" className="block text-right group">
               <p className="font-data text-[9px] tracking-[0.3em] mb-1" style={{ color: 'rgba(240,238,233,0.4)' }}>CURRENTLY FEATURED</p>
-              <p className="font-display text-xl" style={{ color: 'var(--av-text)' }}>Iceland</p>
-              <p className="font-data text-[10px] mt-0.5" style={{ color: 'var(--av-orange)' }}>from ₹88,000 · 6 days</p>
+              <p className="font-display text-xl" style={{ color: 'var(--av-text)' }}>Swiss Alps</p>
+              <p className="font-data text-[10px] mt-0.5" style={{ color: 'var(--av-orange)' }}>from ₹95,000 · 7 days</p>
               <div className="flex justify-end mt-2">
                 <span className="font-data text-[9px] tracking-[0.2em] px-3 py-1.5 rounded-[4px] flex items-center gap-1.5 group-hover:bg-[rgba(255,255,255,0.1)] transition-all" style={{ border: '1px solid rgba(255,255,255,0.15)', color: 'rgba(240,238,233,0.6)' }}>
                   VIEW <ArrowUpRight size={10} strokeWidth={2} />
@@ -273,17 +273,23 @@ export function Home() {
       </section>
 
       {/* ─── AI SEARCH PROMO ──────────────────────────── */}
-      <section className="mx-4 sm:mx-8 lg:mx-16 my-6 rounded-[8px] overflow-hidden relative" style={{ border: '1px solid rgba(92,111,255,0.18)', background: 'rgba(92,111,255,0.04)' }}>
+      <section className="mx-4 sm:mx-8 lg:mx-16 my-6 rounded-[8px] overflow-hidden relative" style={{ border: '1px solid rgba(92,111,255,0.2)', background: 'linear-gradient(135deg, rgba(92,111,255,0.06) 0%, rgba(92,111,255,0.02) 100%)' }}>
         <div className="grid grid-cols-1 md:grid-cols-2 min-h-[280px] md:min-h-[340px]">
           <div className="p-8 md:p-12 lg:p-16 flex flex-col justify-between">
             <div>
-              <p className="font-data text-[10px] tracking-[0.3em] mb-5" style={{ color: 'var(--av-accent)' }}>04 / AI INTELLIGENCE</p>
+              <div className="flex items-center gap-3 mb-5">
+                <p className="font-data text-[10px] tracking-[0.3em]" style={{ color: 'var(--av-accent)' }}>04 / AI INTELLIGENCE</p>
+                <div className="flex items-center gap-1.5 px-2 py-0.5 rounded-[3px]" style={{ background: 'rgba(200,241,53,0.1)', border: '1px solid rgba(200,241,53,0.25)' }}>
+                  <span className="w-1 h-1 rounded-full animate-pulse" style={{ background: 'var(--av-lime)' }} />
+                  <span className="font-data text-[8px] tracking-[0.15em]" style={{ color: 'var(--av-lime)' }}>LIVE</span>
+                </div>
+              </div>
               <h2 className="font-display" style={{ fontSize: 'clamp(24px, 3vw, 40px)', color: 'var(--av-text)', lineHeight: 1.08, letterSpacing: '-0.02em' }}>
                 Search differently.<br />
                 <span style={{ color: 'rgba(240,238,233,0.4)' }}>Search intelligently.</span>
               </h2>
               <p className="font-body mt-4 max-w-sm" style={{ fontSize: 14, color: 'rgba(240,238,233,0.45)', lineHeight: 1.7 }}>
-                No dropdowns. No date-pickers. Just say what you want.
+                No dropdowns. No date-pickers. Powered by Gemini AI — just say what you want.
               </p>
             </div>
             <Link to="/search" className="font-data text-[11px] tracking-[0.2em] px-7 py-3.5 rounded-[6px] inline-flex items-center gap-3 w-fit hover:brightness-110 transition-all mt-6" style={{ background: 'var(--av-accent)', color: '#fff' }}>
@@ -292,13 +298,16 @@ export function Home() {
           </div>
           <div className="flex items-center justify-center p-6 md:p-10">
             <div className="w-full max-w-sm">
-              <div className="rounded-[6px] p-4 mb-3" style={{ background: 'rgba(6,6,10,0.6)', border: '1px solid rgba(255,255,255,0.06)' }}>
-                <p className="font-body text-[13px]" style={{ color: 'rgba(240,238,233,0.7)' }}>
+              <div className="rounded-[6px] p-4 mb-3" style={{ background: 'rgba(6,6,10,0.6)', border: '1px solid rgba(255,255,255,0.07)' }}>
+                <p className="font-body text-[13px] leading-relaxed" style={{ color: 'rgba(240,238,233,0.7)' }}>
                   "I want somewhere warm in December under ₹30,000 — not crowded."
                 </p>
               </div>
-              <div className="rounded-[6px] p-4" style={{ background: 'rgba(92,111,255,0.1)', border: '1px solid rgba(92,111,255,0.2)' }}>
-                <p className="font-data text-[9px] tracking-[0.2em] mb-2" style={{ color: 'var(--av-accent)' }}>AEROVIA INTELLIGENCE ◆</p>
+              <div className="rounded-[6px] p-4" style={{ background: 'rgba(92,111,255,0.1)', border: '1px solid rgba(92,111,255,0.22)' }}>
+                <div className="flex items-center gap-2 mb-2">
+                  <p className="font-data text-[9px] tracking-[0.2em]" style={{ color: 'var(--av-accent)' }}>GEMINI AI ◆</p>
+                  <span className="w-1 h-1 rounded-full animate-pulse" style={{ background: 'var(--av-lime)' }} />
+                </div>
                 <p className="font-body text-[12px] leading-relaxed" style={{ color: 'rgba(240,238,233,0.7)' }}>
                   Matching: <strong style={{ color: 'var(--av-text)' }}>Morocco</strong> · December avg 22°C · ₹28,000 · Low tourist density.
                 </p>
@@ -368,35 +377,6 @@ export function Home() {
         </div>
       </section>
 
-      {/* ─── FOOTER ───────────────────────────────────── */}
-      <footer className="px-4 sm:px-8 lg:px-16 py-10 md:py-12" style={{ borderTop: '1px solid var(--av-border)' }}>
-        <div className="flex flex-col sm:flex-row items-start justify-between gap-10">
-          <div>
-            <div className="flex items-center gap-2 mb-4">
-              <span className="font-data text-[10px]" style={{ color: 'var(--av-accent)' }}>◆</span>
-              <span className="font-data text-xs tracking-[0.28em]" style={{ color: 'var(--av-text)' }}>AEROVIA</span>
-            </div>
-            <p className="font-body text-[12px] max-w-xs" style={{ color: 'rgba(240,238,233,0.3)' }}>Travel intelligence for those who move with intention.</p>
-          </div>
-          <div className="flex gap-12 sm:gap-16">
-            {[
-              { title: 'PLATFORM', links: ['Explore', 'Deals', 'Dashboard', 'AI Search'] },
-              { title: 'ROUTES', links: ['Asia', 'Europe', 'Americas', 'Africa'] },
-            ].map(col => (
-              <div key={col.title}>
-                <p className="font-data text-[9px] tracking-[0.3em] mb-4" style={{ color: 'rgba(240,238,233,0.3)' }}>{col.title}</p>
-                {col.links.map(l => (
-                  <p key={l} className="font-body text-[12px] mb-2.5 hover:text-white transition-colors" style={{ color: 'rgba(240,238,233,0.45)' }}>{l}</p>
-                ))}
-              </div>
-            ))}
-          </div>
-        </div>
-        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 mt-10 pt-6" style={{ borderTop: '1px solid rgba(255,255,255,0.05)' }}>
-          <p className="font-data text-[9px] tracking-[0.2em]" style={{ color: 'rgba(240,238,233,0.2)' }}>© 2026 AEROVIA. ALL RIGHTS RESERVED.</p>
-          <p className="font-data text-[9px] tracking-[0.2em]" style={{ color: 'rgba(240,238,233,0.2)' }}>MIDNIGHT ATLAS v1.0</p>
-        </div>
-      </footer>
     </div>
   );
 }

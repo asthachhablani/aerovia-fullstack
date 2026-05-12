@@ -85,13 +85,13 @@ export function Flights() {
     >
       {/* ── Header ───────────────────────────────────────── */}
       <div className="px-4 sm:px-8 lg:px-16 pt-10 md:pt-16 pb-6 md:pb-10">
-        <motion.p
-          initial={{ opacity: 0, x: -16 }} animate={{ opacity: 1, x: 0 }}
-          className="font-data text-[10px] tracking-[0.3em] mb-4"
-          style={{ color: 'var(--av-accent)' }}
-        >
-          AEROVIA / FLIGHTS
-        </motion.p>
+        <motion.div initial={{ opacity: 0, x: -16 }} animate={{ opacity: 1, x: 0 }} className="flex items-center gap-3 mb-4">
+          <p className="font-data text-[10px] tracking-[0.3em]" style={{ color: 'var(--av-accent)' }}>AEROVIA / FLIGHTS</p>
+          <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-[3px]" style={{ background: 'rgba(92,111,255,0.08)', border: '1px solid rgba(92,111,255,0.2)' }}>
+            <span className="w-1 h-1 rounded-full" style={{ background: 'var(--av-lime)' }} />
+            <span className="font-data text-[8px] tracking-[0.18em]" style={{ color: 'rgba(240,238,233,0.45)' }}>10,030 LIVE ROUTES</span>
+          </div>
+        </motion.div>
         <motion.h1
           initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1 }}
