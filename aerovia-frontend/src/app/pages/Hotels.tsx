@@ -3,6 +3,7 @@ import { Link } from 'react-router';
 import { motion } from 'motion/react';
 import { Star, MapPin, ArrowRight, Filter, X, Loader2, BedDouble } from 'lucide-react';
 import { dataApi } from '../services/api';
+import { SaveButton } from '../components/SaveButton';
 
 interface Hotel {
   id: string;
@@ -265,13 +266,26 @@ function HotelCard({ hotel, index }: { hotel: Hotel; index: number }) {
               <span className="font-data text-[10px]" style={{ color: 'rgba(240,238,233,0.4)' }}>/ NIGHT</span>
             </div>
           </div>
-          <Link
-            to="/book"
-            className="w-9 h-9 rounded-[5px] flex items-center justify-center transition-all hover:scale-110"
-            style={{ background: 'var(--av-accent)' }}
-          >
-            <BedDouble size={14} strokeWidth={2} color="#fff" />
-          </Link>
+          <div className="flex items-center gap-2">
+            <SaveButton
+              itemType="hotel"
+              itemId={hotel.id}
+              snapshot={{
+                name: hotel.name,
+                image: hotel.image,
+                price: hotel.pricePerNight,
+                tag: hotel.tag,
+                country: hotel.country,
+              }}
+            />
+            <Link
+              to="/book"
+              className="w-9 h-9 rounded-[5px] flex items-center justify-center transition-all hover:scale-110"
+              style={{ background: 'var(--av-accent)' }}
+            >
+              <BedDouble size={14} strokeWidth={2} color="#fff" />
+            </Link>
+          </div>
         </div>
       </div>
     </motion.div>

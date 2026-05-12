@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'motion/react';
 import { Plane, ArrowRight, Filter, X, Loader2 } from 'lucide-react';
 import { dataApi } from '../services/api';
 import { PriceSparkline, RoutePricePanel } from '../components/PriceTracker';
+import { SaveButton } from '../components/SaveButton';
 
 interface Flight {
   id: string;
@@ -238,14 +239,25 @@ function FlightCard({ flight, index }: { flight: Flight; index: number }) {
             <p className="font-data text-[9px] tracking-[0.18em]" style={{ color: 'rgba(240,238,233,0.4)' }}>{flight.code} · {flight.class.toUpperCase()}</p>
           </div>
         </div>
-        {flight.tag ? (
-          <span
-            className="font-data text-[8px] tracking-[0.22em] px-2 py-1 rounded-[3px]"
-            style={{ background: 'rgba(200,241,53,0.12)', color: 'var(--av-lime)', border: '1px solid rgba(200,241,53,0.25)' }}
-          >
-            {flight.tag}
-          </span>
-        ) : null}
+        <div className="flex items-center gap-2">
+          {flight.tag ? (
+            <span
+              className="font-data text-[8px] tracking-[0.22em] px-2 py-1 rounded-[3px]"
+              style={{ background: 'rgba(200,241,53,0.12)', color: 'var(--av-lime)', border: '1px solid rgba(200,241,53,0.25)' }}
+            >
+              {flight.tag}
+            </span>
+          ) : null}
+          <SaveButton
+            itemType="flight"
+            itemId={flight.id}
+            snapshot={{
+              name: `${flight.airline} · ${flight.from} → ${flight.to}`,
+              price: flight.price,
+              tag: flight.tag || flight.class,
+            }}
+          />
+        </div>
       </div>
 
       <div className="flex items-center justify-between mb-4">
