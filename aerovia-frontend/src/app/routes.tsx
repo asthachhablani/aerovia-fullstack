@@ -11,6 +11,7 @@ import { Hotels } from './pages/Hotels';
 import { Login } from './pages/Login';
 import { Register } from './pages/Register';
 import { Profile } from './pages/Profile';
+import { Packages } from './pages/Packages';
 
 export const router = createBrowserRouter([
   {
@@ -25,6 +26,7 @@ export const router = createBrowserRouter([
       { path: 'deals', Component: Deals },
       { path: 'flights', Component: Flights },
       { path: 'hotels', Component: Hotels },
+      { path: 'packages', Component: Packages },
       { path: 'login', Component: Login },
       { path: 'register', Component: Register },
       { path: 'profile', Component: Profile },

@@ -13,6 +13,7 @@ const navLinks = [
   { label: 'EXPLORE',   path: '/search' },
   { label: 'FLIGHTS',   path: '/flights' },
   { label: 'HOTELS',    path: '/hotels' },
+  { label: 'PACKAGES',  path: '/packages' },
   { label: 'DEALS',     path: '/deals' },
   { label: 'DASHBOARD', path: '/dashboard' },
 ];
